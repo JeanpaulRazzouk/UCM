@@ -134,7 +134,7 @@ public class MenuPage extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -143,7 +143,7 @@ public class MenuPage extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 634, Short.MAX_VALUE))
+                .addGap(0, 664, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,8 +181,8 @@ public class MenuPage extends javax.swing.JFrame {
     }//GEN-LAST:event_kButton2ActionPerformed
 
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-        CardLayout card = (CardLayout)HomePage.jPanel1.getLayout();
-    card.show(jPanel3, " \t\t\t\t\t\t\t /n/n/n/n/n/n HELLO WORLD ");
+        CardLayout card = (CardLayout)jPanel3.getLayout();
+    card.show(jPanel3, " /t/t/t/t/t  ");
     }//GEN-LAST:event_kButton1ActionPerformed
 
     /**
