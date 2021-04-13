@@ -1,0 +1,9 @@
+<resources>
+
+
+
+
+    <style name="Theme.UCM.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.UCM.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

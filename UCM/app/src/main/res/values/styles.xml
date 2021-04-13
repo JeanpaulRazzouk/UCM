@@ -1,0 +1,25 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="colorAccent">@color/color3</item>/>
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+    <style name="AppTheme.Design"
+        parent="Widget.AppCompat.ProgressBar">
+        <item name="colorAccent">@color/color3</item>/>
+    </style>
+
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.Holo.CalendarView">
+    </style>
+</resources>

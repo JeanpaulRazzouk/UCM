@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#D57676</color>
+    <color name="white">#F3F4F4</color>
+    <color name="login_form_details_light">#1affffff</color>
+
+
+    <color name="colorPrimary">#2479A1</color>
+    <color name="colorPrimaryDark">#2479A1</color>
+
+    <color name="colorTextPrimary">#ffffff</color>
+    <color name="colorTextSecondary">#A3FFFFFF</color>
+    <color name="colorBadge">#f4d415</color>
+
+    <color name="color1">#2196F3</color>
+    <color name="color2">#D267E4</color>
+
+    <color name="color3">#A440B5</color>
+    <color name="color4">#BF64C8</color>
+
+    <color name="add_manual_account_completed_activity_add_account_button_gradient_stop_color_2">#2DC897</color>
+    <color name="add_manual_account_completed_activity_add_account_button_gradient_stop_color_1">#7EF192</color>
+
+</resources>
