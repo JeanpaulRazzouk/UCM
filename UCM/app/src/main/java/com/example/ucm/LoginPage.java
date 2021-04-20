@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.ucm.Fragments.Home;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -28,12 +29,25 @@ VideoView videoView;
 EditText editText,editText2;
 ImageButton imageButton;
 private FirebaseAuth mAuth;
+    FirebaseUser user ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // //
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null ) {
+            boolean emailVerified = user.isEmailVerified();
+            if (emailVerified == true) {
+                // User is signed in
+                Intent i = new Intent(LoginPage.this, HomePage.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+            }
+        } else {
+
         }
         setContentView(R.layout.activity_login_page);
         editText = findViewById(R.id.editText);

@@ -69,9 +69,21 @@
                 android:layout_width="500dp"
                 android:layout_height="500dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginStart="400dp"
+                android:layout_marginStart="700dp"
                 android:layout_marginTop="100dp">
             </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="564dp"
+                android:layout_height="500dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="-500dp"
+                android:fontFamily="@font/sf_ui_display_black"
+                android:text="79% Have Been to Starbucks"
+                android:textSize="50dp"
+                android:textColor="#556B91"
+                android:layout_marginEnd="200dp" />
 
         </LinearLayout>
 
