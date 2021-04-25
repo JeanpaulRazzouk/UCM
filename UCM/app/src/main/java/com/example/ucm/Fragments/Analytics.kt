@@ -45,56 +45,151 @@ class Analytics : Fragment() {
     }
 
     fun FirstGraph(){
-        //TODO() Design Data Algorithm
         user = FirebaseAuth.getInstance().currentUser
         FirebaseDatabase.getInstance().getReference("Users").child(user!!.uid).addValueEventListener(object : ValueEventListener {
             @RequiresApi(api = Build.VERSION_CODES.O)
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // retrieving Data
+                val array_location: ArrayList<String> = arrayListOf();
+                val array_amount: ArrayList<String> = arrayListOf();
+                var aaSeriesElement: AASeriesElement
+                var aaSeries: ArrayList<AASeriesElement> = arrayListOf()
+                var TheMethod: ArrayList<ArrayList<Float>> = arrayListOf()
+                var TheMethodName: ArrayList<String> = arrayListOf()
+                //
+                val Count = dataSnapshot.child("User Data").child("Transaction count").value.toString()
+                for (i in 0 until Count.toInt()) {
+                    array_location?.add(dataSnapshot.child("Transactions").child(i.toString()).child("Name").value.toString())
+                    array_amount?.add(dataSnapshot.child("Transactions").child(i.toString()).child("Amount").value.toString())
+                }
 
-                val aaChartModel : AAChartModel = AAChartModel()
-                        .chartType(AAChartType.Pie)
-                        .title("title")
-                        .subtitle("subtitle")
+                for (j in 0 until Count.toInt()) {
+                    for (i in j+1 until Count.toInt()) {
+                        if (array_location.get(j)==array_location.get(i)) {
+                            var TheMethod2: ArrayList<Float> = arrayListOf()
+
+                            if (TheMethodName.contains(array_location.get(j))) {
+                                val c = TheMethodName.indexOf(array_location.get(j))
+                                TheMethod.get(c).add(array_amount.get(i).toFloat())
+                            }else{
+                                TheMethodName.add(array_location.get(i))
+                                TheMethod2.add(array_amount.get(i).toFloat())
+                                TheMethod2.add(array_amount.get(j).toFloat())
+                                TheMethod.add(TheMethod2)
+                            }
+                        }
+                        else{
+                            var TheMethod3: ArrayList<Float> = arrayListOf()
+                            if (TheMethodName.contains(array_location.get(j))) {
+                                if (i<1) {
+                                    val c = TheMethodName.indexOf(array_location.get(j))
+                                    TheMethod.get(c).add(array_amount.get(i).toFloat())
+                                }
+                            }
+                            else {
+                                TheMethodName.add(array_location.get(i))
+                                TheMethod3.add(array_amount.get(i).toFloat())
+                                TheMethod.add(TheMethod3)
+                            }
+                        }
+                    }
+                }
+
+
+                for (j in 0 until TheMethodName.size) {
+                    aaSeriesElement = AASeriesElement().name(TheMethodName.get(j))
+                            .data(TheMethod.get(j).toTypedArray());
+                    aaSeries.add(aaSeriesElement)
+                }
+
+                val aaChartModel: AAChartModel = AAChartModel()
+                        .chartType(AAChartType.Polygon)
+                        .title("Spending Spree By Places")
+                        .subtitle("Amount Spent By User in different Places")
                         .backgroundColor("#fafafa")
                         .dataLabelsEnabled(true)
-                        .series(arrayOf(
-                                AASeriesElement()
-                                        .name("Tokyo")
-                                        .data(arrayOf(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6))
-                        )
-                        )
+                        .series(aaSeries.toTypedArray())
                 aaChartView?.aa_drawChartWithChartModel(aaChartModel)
-                // ...
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-    })
+        })
     }
 
     fun SecondGraph(){
-        //TODO() Design Data Algorithm
-        val aaChartModel : AAChartModel = AAChartModel()
-                .chartType(AAChartType.Polygon)
-                .title("title")
-                .subtitle("subtitle")
-                .backgroundColor("#fafafa")
-                .dataLabelsEnabled(true)
-                .series(arrayOf(
-                        AASeriesElement()
-                                .name("Tokyo")
-                                .data(arrayOf(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6)),
-                        AASeriesElement()
-                                .name("NewYork")
-                                .data(arrayOf(0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5)),
-                        AASeriesElement()
-                                .name("London")
-                                .data(arrayOf(0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0)),
-                        AASeriesElement()
-                                .name("Berlin")
-                                .data(arrayOf(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8))
-                )
-                )
-        aaChartView2?.aa_drawChartWithChartModel(aaChartModel)
+        user = FirebaseAuth.getInstance().currentUser
+        FirebaseDatabase.getInstance().getReference("Users").child(user!!.uid).addValueEventListener(object : ValueEventListener {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // retrieving Data
+                val array_location: ArrayList<String> = arrayListOf();
+                val array_amount: ArrayList<String> = arrayListOf();
+                var aaSeriesElement: AASeriesElement
+                var aaSeries: ArrayList<AASeriesElement> = arrayListOf()
+                var TheMethod: ArrayList<ArrayList<Float>> = arrayListOf()
+                var TheMethodName: ArrayList<String> = arrayListOf()
+                //
+                val Count = dataSnapshot.child("User Data").child("Transaction count").value.toString()
+                for (i in 0 until Count.toInt()) {
+                    array_location?.add(dataSnapshot.child("Transactions").child(i.toString()).child("Location").value.toString())
+                    array_amount?.add(dataSnapshot.child("Transactions").child(i.toString()).child("Amount").value.toString())
+                }
+
+                for (j in 0 until Count.toInt()) {
+                    for (i in j+1 until Count.toInt()) {
+                        if (array_location.get(j)==array_location.get(i)) {
+                            var TheMethod2: ArrayList<Float> = arrayListOf()
+
+                            if (TheMethodName.contains(array_location.get(j))) {
+                                val c = TheMethodName.indexOf(array_location.get(j))
+                                TheMethod.get(c).add(array_amount.get(i).toFloat())
+                            }else{
+                                TheMethodName.add(array_location.get(i))
+                                TheMethod2.add(array_amount.get(i).toFloat())
+                                TheMethod2.add(array_amount.get(j).toFloat())
+                                TheMethod.add(TheMethod2)
+                            }
+                        }
+                        else{
+                            var TheMethod3: ArrayList<Float> = arrayListOf()
+                            if (TheMethodName.contains(array_location.get(j))) {
+                                if (i<1) {
+                                    val c = TheMethodName.indexOf(array_location.get(j))
+                                    TheMethod.get(c).add(array_amount.get(i).toFloat())
+                                }
+                            }
+                            else {
+                                TheMethodName.add(array_location.get(i))
+                                TheMethod3.add(array_amount.get(i).toFloat())
+                                TheMethod.add(TheMethod3)
+                            }
+                        }
+                    }
+                }
+
+
+                for (j in 0 until TheMethodName.size) {
+                    aaSeriesElement = AASeriesElement().name(TheMethodName.get(j))
+                            .data(TheMethod.get(j).toTypedArray());
+                    aaSeries.add(aaSeriesElement)
+                }
+
+                val aaChartModel: AAChartModel = AAChartModel()
+                        .chartType(AAChartType.Bubble)
+                        .title("Spending Spree By Places")
+                        .subtitle("Amount Spent By User in different Places")
+                        .backgroundColor("#fafafa")
+                        .dataLabelsEnabled(true)
+                        .xAxisLabelsEnabled(false)
+                        .series(aaSeries.toTypedArray())
+                aaChartView2?.aa_drawChartWithChartModel(aaChartModel)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
